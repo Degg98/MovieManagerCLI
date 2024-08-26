@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Inception",
+        "genre": "Sci-Fi",
+        "release_year": 2010,
+        "rating": 8.8
+    },
+    {
+        "title": "The Matrix",
+        "genre": "Sci-Fi",
+        "release_year": 1999,
+        "rating": 8.7
+    },
+    {
+        "title": "Interstellar",
+        "genre": "Sci-Fi",
+        "release_year": 2014,
+        "rating": 8.6
+    },
+    {
+        "title": "Parasite",
+        "genre": "Thriller",
+        "release_year": 2019,
+        "rating": 9.1
+    },
+    {
+        "title": "The Dark Knight",
+        "genre": "Action",
+        "release_year": 2008,
+        "rating": 9.0
+    },
+    {
+        "title": "Pulp Fiction",
+        "genre": "Crime",
+        "release_year": 1994,
+        "rating": 8.9
+    },
+    {
+        "title": "Forrest Gump",
+        "genre": "Drama",
+        "release_year": 1994,
+        "rating": 8.8
+    },
+    {
+        "title": "The Shawshank Redemption",
+        "genre": "Drama",
+        "release_year": 1994,
+        "rating": 9.3
+    },
+    {
+        "title": "Fight Club",
+        "genre": "Drama",
+        "release_year": 1999,
+        "rating": 8.8
+    },
+    {
+        "title": "The Godfather",
+        "genre": "Crime",
+        "release_year": 1972,
+        "rating": 9.2
+    }
+]
