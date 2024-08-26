@@ -1,5 +1,13 @@
 from abc import ABC, abstractmethod
 
+""" 
+    This file provides the Movie class and the AbstractMovieFactory class. 
+    
+    An abstract factory pattern is used to create Movie objects.
+    The Movie class is an abstract base class that represents a movie.
+    The AbstractMovieFactory class is an abstract base class that represents a factory for creating Movie objects.
+"""
+
 class Movie(ABC):
     def __init__(self, title: str, genre: str, release_year: int, rating: float):
         self.title = title

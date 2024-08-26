@@ -1,5 +1,12 @@
 from movies.movie import Movie
 
+""" 
+    This module provides a class for managing a collection of movies. 
+    
+    The MovieCollection class provides methods for adding movies to the collection,
+    retrieving movies by title, genre, or rating, and calculating statistics on the collection.
+"""
+
 class MovieCollection:
     def __init__(self):
         self.movies = []

@@ -1,6 +1,8 @@
 import json
 from movies.movie_factory import MovieFactory
 
+""" This module provides a class for handling file I/O operations. """
+
 class FileHandler:
     @staticmethod
     def load_from_file(file_path: str) -> list:
