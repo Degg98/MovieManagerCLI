@@ -1,17 +1,14 @@
-import json
-from movies.movie_factory import MovieFactory
-
-""" This module provides a class for handling file I/O operations. """
+from utils.file_handler_factory import FileHandlerFactory
 
 class FileHandler:
-    @staticmethod
-    def load_from_file(file_path: str) -> list:
-        with open(file_path, 'r') as file:
-            data = json.load(file)
-            factory = MovieFactory()
-            return [factory.create_movie(**movie_data) for movie_data in data]
+    def __init__(self, file_type="json", db_name="movies.db"):
+        self.handler = FileHandlerFactory.create_file_handler(file_type, db_name)
 
-    @staticmethod
-    def save_to_file(file_path: str, movies: list):
-        with open(file_path, 'w') as file:
-            json.dump([movie.__dict__ for movie in movies], file, indent=4)
+    def load_movies(self, source):
+        self.handler.load_movies(source)
+
+    def save_movies(self, destination):
+        self.handler.save_movies(destination)
+
+    def close(self):
+        self.handler.close()
