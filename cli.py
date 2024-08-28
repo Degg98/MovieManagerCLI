@@ -15,6 +15,7 @@ from utils.file_handler import FileHandler
     The cli function supports the following command-line arguments:
     --list: List all movies in the collection.
     --add: Add a new movie to the collection.
+    --delete: Delete a movie from the collection.
     --load: Load movies from a file.
     --retrieve: Retrieve movies by title, genre, or rating.
     --stats: Calculate statistics about the collection.
@@ -29,6 +30,7 @@ from utils.file_handler import FileHandler
 def cli():
     parser = argparse.ArgumentParser(description="Movie Manager CLI")
     parser.add_argument("--add", nargs=4, metavar=("TITLE", "GENRE", "YEAR", "RATING"), help="Add a new movie")
+    parser.add_argument("--delete", nargs=2, metavar=("TITLE", "YEAR"), help="Delete a movie")
     parser.add_argument("--load", metavar="FILE", help="Load movies from a file.")
     parser.add_argument("--retrieve", nargs=2, metavar=("FILTER", "VALUE"), help="Retrieve movies by title, genre, or rating")
     parser.add_argument("--stats", action="store_true", help="Calculate and display collection statistics")
@@ -50,6 +52,10 @@ def cli():
         movie = factory.create_movie(title, genre, int(year), float(rating))
         collection.add_movie(movie)
     
+    if args.delete:
+        title, year = args.delete
+        collection.delete_movie(title, int(year))
+
     if args.load:
         if not os.path.isfile(args.load):
             print(f"File '{args.load}' does not exist.")

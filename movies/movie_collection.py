@@ -10,6 +10,9 @@ class MovieCollection:
     def add_movie(self, movie):
         self.db.add_movie(movie)
 
+    def delete_movie(self, title, release_year):
+        self.db.delete_movie(title, release_year)
+
     def get_movie_by_title(self, title):
         return self.db.get_movie_by_title(title)
 

@@ -138,6 +138,14 @@ class MovieDB:
             'most_recent_movie': most_recent_movie[0],
             'highest_rated_movie': highest_rated_movie[0]
         }
+    
+    def delete_movie(self, title, release_year):
+        title = self.format_string(title)
+        self.cursor.execute('''
+            DELETE FROM movies WHERE title = ? AND release_year = ?
+        ''', (title, release_year))
+        self.conn.commit()
+        print(f"Movie '{title}' deleted successfully!")
 
     def close(self):
         self.conn.close()

@@ -18,15 +18,6 @@ class Movie(ABC):
     def __str__(self):
         return f"{self.title} ({self.release_year}), Genre: {self.genre}, Rating: {self.rating}"
 
-    @staticmethod
-    def capitalize_words(input_string):
-        # Format the input 
-        words = input_string.split()
-        capitalized_words = [word.capitalize() for word in words]
-        result = ' '.join(capitalized_words)
-        
-        return result
-
 class AbstractMovieFactory(ABC):
     @abstractmethod
     def create_movie(self, title: str, genre: str, release_year: int, rating: float) -> Movie:
