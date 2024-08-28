@@ -88,7 +88,7 @@ def cli():
             print("No movies in the collection.")
 
     if args.recommend:
-        base_movie = collection.get_movie_by_title(args.recommend)
+        base_movie = collection.get_movie_by_title(args.recommend)[0]
         print(f"Base movie: {base_movie}")
         recommender = MovieRecommendation()
         recommendations = recommender.recommend(collection, base_movie)

@@ -13,7 +13,7 @@ class JsonFileHandler(FileHandlerBase):
         try:
             with open(json_file, 'r') as file:
                 movies_data = json.load(file)
-                
+                added_movies = 0
                 for movie_data in movies_data:
                     movie = self.factory.create_movie(
                         title=movie_data['title'], 
@@ -21,8 +21,8 @@ class JsonFileHandler(FileHandlerBase):
                         release_year=movie_data['release_year'], 
                         rating=movie_data['rating']
                     )
-                    self.db.add_movie(movie)
-            print(f"Successfully loaded movies from {json_file}.")
+                    added_movies = added_movies + int(self.db.add_movie(movie))
+            print(f"Successfully loaded {added_movies} movies from {json_file}.")
         except Exception as e:
             print(f"Error loading movies from {json_file}: {e}")
 

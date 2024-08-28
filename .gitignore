@@ -1,0 +1,4 @@
+__pycache__/cli.cpython-310.pyc
+utils/__pycache__/json_file_handler.cpython-310.pyc
+utils/__pycache__/xml_file_handler.cpython-310.pyc
+movies/__pycache__/movie_db.cpython-310.pyc

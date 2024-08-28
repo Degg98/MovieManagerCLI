@@ -14,7 +14,7 @@ class XmlFileHandler(FileHandlerBase):
         try:
             tree = ET.parse(xml_file)
             root = tree.getroot()
-
+            added_movies = 0
             for movie_element in root.findall('movie'):
                 title = movie_element.find('title').text
                 genre = movie_element.find('genre').text
@@ -27,9 +27,9 @@ class XmlFileHandler(FileHandlerBase):
                     release_year=release_year,
                     rating=rating
                 )
-                self.db.add_movie(movie)
+                added_movies = added_movies + int(self.db.add_movie(movie))
 
-            print(f"Successfully loaded movies from {xml_file}.")
+            print(f"Successfully loaded {added_movies} movies from {xml_file}.")
         except Exception as e:
             print(f"Error loading movies from {xml_file}: {e}")
 

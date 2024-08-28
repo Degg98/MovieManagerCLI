@@ -57,6 +57,7 @@ class MovieDB:
         ''', (movie.title, movie.genre, movie.release_year, movie.rating))
         print(f"Movie '{movie.title}' added successfully!")
         self.conn.commit()
+        return True
 
     def get_movie_by_title(self, title):
         title = self.format_string(title)
