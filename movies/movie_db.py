@@ -34,18 +34,21 @@ class MovieDB:
             INSERT INTO movies (title, genre, release_year, rating)
             VALUES (?, ?, ?, ?)
         ''', (movie.title, movie.genre, movie.release_year, movie.rating))
+        print(f"Movie '{movie.title}' added successfully!")
         self.conn.commit()
 
     def get_movie_by_title(self, title):
         self.cursor.execute('SELECT * FROM movies WHERE title = ?', (title,))
         row = self.cursor.fetchone()
         if row:
-            return self.factory.create_movie(
+            movie = self.factory.create_movie(
                 title=row[0],
                 genre=row[1],
                 release_year=row[2],
                 rating=row[3]
             )
+            print(f"Movie '{title}' found!")
+            return movie
         return None
 
     def get_all_movies(self):
@@ -94,7 +97,7 @@ class MovieDB:
         return movies
 
     def calculate_statistics(self):
-        cursor = self.connection.cursor()
+        cursor = self.conn.cursor()
 
         cursor.execute("SELECT AVG(rating) FROM movies")
         avg_rating = cursor.fetchone()[0]
