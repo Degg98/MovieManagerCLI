@@ -47,7 +47,6 @@ def cli():
         title, genre, year, rating = args.add
         movie = factory.create_movie(title, genre, int(year), float(rating))
         collection.add_movie(movie)
-        print(f"Movie '{title}' added successfully!")
     
     if args.load:
         if not os.path.isfile(args.load):
@@ -60,7 +59,7 @@ def cli():
     if args.retrieve:
         filter_type, value = args.retrieve
         if filter_type == "title":
-            movies = collection.get_movies_by_title(value)
+            movies = collection.get_movie_by_title(value)
         elif filter_type == "genre":
             movies = collection.get_movies_by_genre(value)
         elif filter_type == "rating":
@@ -68,9 +67,7 @@ def cli():
         else:
             print("Invalid filter type.")
             return
-
-        for movie in movies:
-            print(movie)
+        print(movies)
 
     if args.stats:
         stats = collection.calculate_statistics()
@@ -92,6 +89,3 @@ def cli():
 
     collection.close()
 
-
-# if __name__ == "__main__":
-#     main()
