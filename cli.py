@@ -1,9 +1,10 @@
 import argparse
+import os
+
 from movies.movie_collection import MovieCollection
 from movies.movie_factory import MovieFactory
 from movies.movie_recommendation import MovieRecommendation
 from utils.file_handler import FileHandler
-import os
 
 """ 
     Command-line interface for managing a movie collection. 
@@ -12,12 +13,13 @@ import os
     It uses the argparse module to parse command-line arguments and perform the appropriate actions.
     
     The cli function supports the following command-line arguments:
+    --list: List all movies in the collection.
     --add: Add a new movie to the collection.
     --load: Load movies from a file.
     --retrieve: Retrieve movies by title, genre, or rating.
     --stats: Calculate statistics about the collection.
     --recommend: Recommend movies similar to a given title.
-    --list: List all movies in the collection.
+
 
     The cli function uses the MovieCollection and MovieRecommendation classes to manage the movie collection and recommend movies.
     The cli function uses the FileHandler class to load movies from a file.
@@ -67,7 +69,8 @@ def cli():
         else:
             print("Invalid filter type.")
             return
-        print(movies)
+        for movie in movies:
+            print(movie)
 
     if args.stats:
         stats = collection.calculate_statistics()
