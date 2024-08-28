@@ -8,6 +8,7 @@
 
 - **List Movie**: List movies in the collection.
 - **Add Movie**: Add a new movie to the collection by specifying the title, genre, release year, and rating.
+- **Delete Movie**: Remove a movie from the collection specifying the title and the release year.  
 - **Retrieve Movies**: Retrieve movies by title, genre, or rating.
 - **Calculate Statistics**:
     - Calculate the average rating of all movies.
@@ -52,7 +53,11 @@ To add a new movie to the collection:
 ```bash
 python main.py --add "Inception" "Sci-Fi" 2010 8.8
 ```
-
+### Removing a Movie
+To remove a movie from the collection:
+```bash
+python main.py --delete "Inception" 2010
+```
 ### Loading Movies from a File
 
 To load a collection of movies from a JSON file:
