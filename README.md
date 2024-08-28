@@ -6,6 +6,7 @@
 
 ## Features
 
+- **List Movie**: List movies in the collection.
 - **Add Movie**: Add a new movie to the collection by specifying the title, genre, release year, and rating.
 - **Retrieve Movies**: Retrieve movies by title, genre, or rating.
 - **Calculate Statistics**:
@@ -38,6 +39,13 @@
 
 The application is controlled via the command line. Below are some example commands to get you started.
 
+### Show collection
+
+To show films in the collection:
+```bash
+python main.py --list
+```
+
 ### Adding a Movie
 
 To add a new movie to the collection:
@@ -49,7 +57,11 @@ python main.py --add "Inception" "Sci-Fi" 2010 8.8
 
 To load a collection of movies from a JSON file:
 ```bash
-python main.py --load movies.json
+python main.py --load data/collections/movies.json
+```
+To load a collection of movies froma XML file:
+```bash
+python main.py --load data/collections/movies.xml
 ```
 
 ### Retrieving Movies
@@ -83,29 +95,33 @@ python main.py --recommend "Inception"
 ## File Structure
 
 ```
-MovieManagerCLI/
-│
-├── movies/
-│   ├── __init__.py
-│   ├── movie.py                  # Base class Movie and Factory Method
-│   ├── movie_factory.py          # Factory implementation for creating movies
-│   ├── movie_collection.py       # Movie collection management
-│   ├── movie_recommendation.py   # Recommendation algorithm
-│
-├── utils/
-│   ├── __init__.py
-│   ├── file_handler.py           # Functions for loading and saving files
-│
-├── cli.py                        # Command-line interface
-├── main.py                       # Application entry point
-├── requirements.txt              # Project dependencies
-├── README.md                     # Project documentation
-└── tests/                        # Test cases for the project
-    ├── __init__.py
-    ├── test_movie.py
-    ├── test_movie_collection.py
-    ├── test_movie_recommendation.py
-    └── test_movie_factory.py     # Factory method tests
+MovieManagerCLI/               # Root directory of the project
+├── cli.py                     # Handles command-line interface logic, parsing user inputs and invoking the appropriate functionality
+├── data
+│   └── collections            # Directory for storing movie data in various formats
+│       ├── movies.json        # Sample movie data in JSON format
+│       └── movies.xml         # Sample movie data in XML format
+├── LICENSE                    # License file specifying the terms under which the project can be used
+├── main.py                    # Entry point of the application, initializes and runs the CLI
+├── movies                     # Package containing core functionality related to movie management
+│   ├── __init__.py            # Marks the directory as a Python package
+│   ├── movie_collection.py    # Manages a collection of Movie objects, handles addition, retrieval, and statistics
+│   ├── movie_db.py            # Manages database operations, such as storing and retrieving movies from an SQLite database
+│   ├── movie_factory.py       # Implements the Factory Method pattern to create Movie instances
+│   ├── movie.py               # Defines the Movie class with attributes like title, genre, release_year, and rating
+│   ├── movie_recommendation.py# Contains logic to recommend movies based on genre and rating
+│   └── .__pycache__           # Directory for storing compiled Python bytecode files for performance optimization
+├── movies.db                  # SQLite database file where movies are stored persistently
+├── README.md                  # Project documentation with instructions on setup, usage, and development
+├── requirements.txt           # List of dependencies required to run the project, used with pip to install them
+└── utils                      # Package containing utility modules for handling different file formats
+    ├── csv_file_handler.py    # Handles reading and writing movie data in CSV format
+    ├── file_handler_base.py   # Abstract base class defining a common interface for file handlers
+    ├── file_handler_factory.py# Implements the Factory Method pattern to instantiate the appropriate file handler
+    ├── file_handler.py        # Centralized logic to manage different file types (delegates to specific handlers)
+    ├── __init__.py            # Marks the directory as a Python package
+    ├── json_file_handler.py   # Handles reading and writing movie data in JSON format
+    └── xml_file_handler.py    # Handles reading and writing movie data in XML format
 ```
 
 <!-- ## Testing
