@@ -46,6 +46,7 @@ def cli():
     db_name = config['database']['db_name']
     rating_tolerance = config['recommendation']['rating_tolerance']
     max_movies = config['file_import']['max_movies']
+    default_command = config['cli_settings']['default_command']
 
     collection = MovieCollection(db_name=db_name)
     factory = MovieFactory()
@@ -82,13 +83,16 @@ def cli():
             movies = collection.get_movie_by_title(value)
         elif filter_type == "genre":
             movies = collection.get_movies_by_genre(value)
+            print(f"Movies with genre '{value}':")
         elif filter_type == "rating":
             movies = collection.get_movies_by_rating(float(value))
+            print(f"Movies with rating >= {value}:")
         else:
             print("Invalid filter type.")
             return
-        for movie in movies:
-            print(movie)
+        if movies:
+            for movie in movies:
+                print(movie)
 
     if args.stats:
         stats = collection.calculate_statistics()
@@ -112,6 +116,9 @@ def cli():
             print("Recommended movies:")
             for movie in recommendations:
                 print(movie)
+    
+    if not any(vars(args).values()):
+        print(parser.print_help())
 
     collection.close()
 

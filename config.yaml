@@ -13,7 +13,7 @@ database:
   db_name: "movies.db"         # Name of the SQLite database file
 
 recommendation:
-  rating_tolerance: 10.0        # Tolerance for rating difference in movie recommendations
+  rating_tolerance: 1.0        # Tolerance for rating difference in movie recommendations
 
 cli_settings:
   default_command: "help"      # Default command to run if no arguments are provided
