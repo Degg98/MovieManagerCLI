@@ -35,7 +35,10 @@
     ```bash
     pip install -r requirements.txt
     ```
-
+4. **Install Packages**
+    ```bash
+    pip install -e .
+    ```
 ## Usage
 
 The application is controlled via the command line. Below are some example commands to get you started.
@@ -44,29 +47,29 @@ The application is controlled via the command line. Below are some example comma
 
 To show films in the collection:
 ```bash
-python main.py --list
+moviemanager --list
 ```
 
 ### Adding a Movie
 
 To add a new movie to the collection:
 ```bash
-python main.py --add "Inception" "Sci-Fi" 2010 8.8
+moviemanager --add "Inception" "Sci-Fi" 2010 8.8
 ```
 ### Removing a Movie
 To remove a movie from the collection:
 ```bash
-python main.py --delete "Inception" 2010
+moviemanager --delete "Inception" 2010
 ```
 ### Loading Movies from a File
 
 To load a collection of movies from a JSON file:
 ```bash
-python main.py --load data/collections/movies.json
+moviemanager --load data/collections/movies.json
 ```
 To load a collection of movies froma XML file:
 ```bash
-python main.py --load data/collections/movies.xml
+moviemanager --load data/collections/movies.xml
 ```
 
 ### Retrieving Movies
@@ -74,27 +77,27 @@ python main.py --load data/collections/movies.xml
 To retrieve movies by title, genre, or rating:
 ```bash
 # By title
-python main.py --retrieve title "Inception"
+moviemanager --retrieve title "Inception"
 
 # By genre
-python main.py --retrieve genre "Sci-Fi"
+moviemanager --retrieve genre "Sci-Fi"
 
 # By minimum rating
-python main.py --retrieve rating 8.5
+moviemanager --retrieve rating 8.5
 ```
 
 ### Calculating Statistics
 
 To calculate and display statistics about the collection:
 ```bash
-python main.py --stats
+moviemanager --stats
 ```
 
 ### Recommending Movies
 
 To get movie recommendations based on a given movie:
 ```bash
-python main.py --recommend "Inception"
+moviemanager --recommend "Inception"
 ```
 
 ## File Structure
@@ -107,6 +110,7 @@ MovieManagerCLI/               # Root directory of the project
 │       ├── movies.json        # Sample movie data in JSON format
 │       └── movies.xml         # Sample movie data in XML format
 ├── LICENSE                    # License file specifying the terms under which the project can be used
+├── setup.py                   # Script used to install the MovieManagerCLI package and its dependencies.
 ├── main.py                    # Entry point of the application, initializes and runs the CLI
 ├── movies                     # Package containing core functionality related to movie management
 │   ├── __init__.py            # Marks the directory as a Python package
