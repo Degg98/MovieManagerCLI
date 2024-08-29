@@ -43,6 +43,10 @@
 
 The application is controlled via the command line. Below are some example commands to get you started.
 
+### Configuration File (`config.yaml`)
+
+The application is highly configurable via the `config.yaml` file, located in the root directory of the project. This file contains key parameters that define the behavior of the application. (**To do**: Define also the Movie Structure)
+
 ### Show collection
 
 To show films in the collection:
@@ -105,6 +109,7 @@ moviemanager --recommend "Inception"
 ```
 MovieManagerCLI/               # Root directory of the project
 ├── cli.py                     # Handles command-line interface logic, parsing user inputs and invoking the appropriate functionality
+├── config.xml                 # Configuration file that contains the settings for the movie recommender system.
 ├── data
 │   └── collections            # Directory for storing movie data in various formats
 │       ├── movies.json        # Sample movie data in JSON format

@@ -1,4 +1,4 @@
-# config.yaml
+# Configuration file that contains the settings for the movie recommender system.
 
 movie_structure:               # Defines the structure of a Movie object
   title: string                # The title of the movie
