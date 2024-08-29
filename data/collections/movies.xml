@@ -60,4 +60,10 @@
         <release_year>1972</release_year>
         <rating>9.2</rating>
     </movie>
+    <movie>
+        <title>Goodfellas</title>
+        <genre>Crime</genre>
+        <release_year>1990</release_year>
+        <rating>8.7</rating>
+    </movie>
 </movies>

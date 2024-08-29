@@ -22,6 +22,11 @@ class XmlFileHandler(FileHandlerBase):
                 release_year = movie_element.find('release_year').text
                 rating = movie_element.find('rating').text
 
+                if self.max_movies is not None and added_movies >= self.max_movies:
+                    print(f"Maximum number of movies ({self.max_movies}) reached.")
+                    added_movies = self.max_movies
+                    break
+
                 movie = self.factory.create_movie(
                     title=title,
                     genre=genre,
@@ -29,9 +34,7 @@ class XmlFileHandler(FileHandlerBase):
                     rating=rating
                 )
                 added_movies = added_movies + int(self.db.add_movie(movie))
-                if self.max_movies is not None and added_movies > self.max_movies:
-                    print(f"Maximum number of movies ({self.max_movies}) reached.")
-                    break
+
             print(f"Successfully loaded {added_movies} movies from {xml_file}.")
         except Exception as e:
             print(f"Error loading movies from {xml_file}: {e}")

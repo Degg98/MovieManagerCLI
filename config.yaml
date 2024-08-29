@@ -1,10 +1,11 @@
-# Configuration file that contains the settings for the movie recommender system.
+### Configuration file that contains the settings for the movie recommender system.
 
-movie_structure:               # Defines the structure of a Movie object
-  title: string                # The title of the movie
-  genre: string                # The genre of the movie
-  release_year: integer        # The release year of the movie
-  rating: float                # The rating of the movie
+#To be iplemented in the future
+# movie_structure:               # Defines the structure of a Movie object
+#   title: string                # The title of the movie
+#   genre: string                # The genre of the movie
+#   release_year: integer        # The release year of the movie
+#   rating: float                # The rating of the movie
 
 file_import:
   max_movies: 10               # Maximum number of movies that can be imported from a file

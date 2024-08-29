@@ -16,6 +16,12 @@ class JsonFileHandler(FileHandlerBase):
                 movies_data = json.load(file)
                 added_movies = 0
                 for movie_data in movies_data:
+                    
+                    if self.max_movies is not None and added_movies >= self.max_movies:
+                        print(f"Maximum number of movies ({self.max_movies}) reached.")
+                        added_movies = self.max_movies
+                        break
+                    
                     movie = self.factory.create_movie(
                         title=movie_data['title'], 
                         genre=movie_data['genre'], 
@@ -23,9 +29,6 @@ class JsonFileHandler(FileHandlerBase):
                         rating=movie_data['rating']
                     )
                     added_movies = added_movies + int(self.db.add_movie(movie))
-                    if self.max_movies is not None and added_movies > self.max_movies:
-                        print(f"Maximum number of movies ({self.max_movies}) reached.")
-                        break
             print(f"Successfully loaded {added_movies} movies from {json_file}.")
         except Exception as e:
             print(f"Error loading movies from {json_file}: {e}")

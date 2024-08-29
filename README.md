@@ -39,6 +39,8 @@
     ```bash
     pip install -e .
     ```
+    Use `pip3` if `pip` doesn't work properly.
+
 ## Usage
 
 The application is controlled via the command line. Below are some example commands to get you started.
@@ -76,6 +78,8 @@ To load a collection of movies froma XML file:
 moviemanager --load data/collections/movies.xml
 ```
 
+The maximum number of movies that can be loaded is setted using the `max_movies` param in the `config.yaml` file.
+
 ### Retrieving Movies
 
 To retrieve movies by title, genre, or rating:
@@ -103,6 +107,8 @@ To get movie recommendations based on a given movie:
 ```bash
 moviemanager --recommend "Inception"
 ```
+Use the `rating_tolerance` param to set the narrowness of the recommendation.
+
 
 ## File Structure
 
