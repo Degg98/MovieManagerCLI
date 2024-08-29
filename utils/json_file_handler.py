@@ -4,9 +4,10 @@ from movies.movie_db import MovieDB
 from utils.file_handler_base import FileHandlerBase
 
 class JsonFileHandler(FileHandlerBase):
-    def __init__(self, db_name="movies.db"):
+    def __init__(self, db_name="movies.db", max_movies=None):
         self.db = MovieDB(db_name)
         self.factory = MovieFactory()
+        self.max_movies = max_movies
 
     def load_movies(self, json_file):
         """Load movies from a JSON file and add them to the database."""
@@ -22,6 +23,9 @@ class JsonFileHandler(FileHandlerBase):
                         rating=movie_data['rating']
                     )
                     added_movies = added_movies + int(self.db.add_movie(movie))
+                    if self.max_movies is not None and added_movies > self.max_movies:
+                        print(f"Maximum number of movies ({self.max_movies}) reached.")
+                        break
             print(f"Successfully loaded {added_movies} movies from {json_file}.")
         except Exception as e:
             print(f"Error loading movies from {json_file}: {e}")

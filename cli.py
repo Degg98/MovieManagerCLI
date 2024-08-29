@@ -1,5 +1,6 @@
 import argparse
 import os
+import yaml
 
 from movies.movie_collection import MovieCollection
 from movies.movie_factory import MovieFactory
@@ -39,7 +40,14 @@ def cli():
 
     args = parser.parse_args()
 
-    collection = MovieCollection()
+    with open("config.yaml", "r") as file:
+        config = yaml.safe_load(file)
+    
+    db_name = config['database']['db_name']
+    rating_tolerance = config['recommendation']['rating_tolerance']
+    max_movies = config['file_import']['max_movies']
+
+    collection = MovieCollection(db_name=db_name)
     factory = MovieFactory()
 
     if args.list:
@@ -65,7 +73,7 @@ def cli():
             print(f"File '{args.load}' does not exist.")
             return
         file_type = args.load.split(".")[-1]
-        file_handler = FileHandler(file_type=file_type)
+        file_handler = FileHandler(file_type=file_type, max_movies=max_movies, db_name=db_name)
         file_handler.load_movies(args.load)
 
     if args.retrieve:
@@ -92,13 +100,18 @@ def cli():
             print("No movies in the collection.")
 
     if args.recommend:
-        base_movie = collection.get_movie_by_title(args.recommend)[0]
-        print(f"Base movie: {base_movie}")
-        recommender = MovieRecommendation()
-        recommendations = recommender.recommend(collection, base_movie)
-        print("Recommended movies:")
-        for movie in recommendations:
-            print(movie)
+        base_movie = collection.get_movie_by_title(args.recommend)
+        if not base_movie:
+            print(f"Movie '{args.recommend}' not found.")
+        else:
+            base_movie = base_movie[0] # Get the first movie with the given title
+            print(f"Base movie: {base_movie}")
+            print(f"Suggesting movies with rating within {rating_tolerance} of the base movie.")
+            recommender = MovieRecommendation()
+            recommendations = recommender.recommend(collection, base_movie, rating_tolerance)
+            print("Recommended movies:")
+            for movie in recommendations:
+                print(movie)
 
     collection.close()
 

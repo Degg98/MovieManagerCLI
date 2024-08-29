@@ -16,10 +16,10 @@ class FileHandlerFactory:
         ValueError: If the given file type is not supported.
     """
     @staticmethod
-    def create_file_handler(file_type, db_name="movies.db"):
+    def create_file_handler(file_type, db_name="movies.db", max_movies=None):
         if file_type == "json":
-            return JsonFileHandler(db_name)
+            return JsonFileHandler(db_name, max_movies)
         if file_type == "xml":
-            return XmlFileHandler(db_name)
+            return XmlFileHandler(db_name, max_movies)
         else:
             raise ValueError(f"Unsupported file type: {file_type}")

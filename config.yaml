@@ -1,0 +1,21 @@
+# config.yaml
+
+movie_structure:               # Defines the structure of a Movie object
+  title: string                # The title of the movie
+  genre: string                # The genre of the movie
+  release_year: integer        # The release year of the movie
+  rating: float                # The rating of the movie
+
+file_import:
+  max_movies: 10               # Maximum number of movies that can be imported from a file
+
+database:
+  db_name: "movies.db"         # Name of the SQLite database file
+
+recommendation:
+  rating_tolerance: 10.0        # Tolerance for rating difference in movie recommendations
+
+cli_settings:
+  default_command: "help"      # Default command to run if no arguments are provided
+
+

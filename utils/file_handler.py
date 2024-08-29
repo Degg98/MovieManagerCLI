@@ -7,14 +7,15 @@ class FileHandler:
     Args:
         file_type (str, optional): The type of file to handle. Defaults to "json".
         db_name (str, optional): The name of the database file. Defaults to "movies.db".
+        max_movies (int, optional): The maximum number of movies to handle. Defaults to None.
 
     Methods:
         load_movies(source): Loads movies from the specified source.
         save_movies(destination): Saves movies to the specified destination.
         close(): Closes the file handler.
     """
-    def __init__(self, file_type="json", db_name="movies.db"):
-        self.handler = FileHandlerFactory.create_file_handler(file_type, db_name)
+    def __init__(self, file_type="json", db_name="movies.db", max_movies=None):
+        self.handler = FileHandlerFactory.create_file_handler(file_type, db_name, max_movies)
 
     def load_movies(self, source):
         self.handler.load_movies(source)

@@ -5,9 +5,10 @@ from utils.file_handler_base import FileHandlerBase
 import xml.etree.ElementTree as ET
 
 class XmlFileHandler(FileHandlerBase):
-    def __init__(self, db_name="movies.db"):
+    def __init__(self, db_name="movies.db", max_movies=None):
         self.db = MovieDB(db_name)
         self.factory = MovieFactory()
+        self.max_movies = max_movies
 
     def load_movies(self, xml_file):
         """Load movies from an XML file and add them to the database."""
@@ -28,7 +29,9 @@ class XmlFileHandler(FileHandlerBase):
                     rating=rating
                 )
                 added_movies = added_movies + int(self.db.add_movie(movie))
-
+                if self.max_movies is not None and added_movies > self.max_movies:
+                    print(f"Maximum number of movies ({self.max_movies}) reached.")
+                    break
             print(f"Successfully loaded {added_movies} movies from {xml_file}.")
         except Exception as e:
             print(f"Error loading movies from {xml_file}: {e}")
