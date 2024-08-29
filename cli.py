@@ -54,7 +54,11 @@ def cli():
     
     if args.delete:
         title, year = args.delete
-        collection.delete_movie(title, int(year))
+        confirm = input(f"Are you sure you want to delete the movie {title} ({year})? (y/n): ")
+        if confirm.lower() == "y":
+            collection.delete_movie(title, int(year))
+        else:
+            print("Deletion canceled.")
 
     if args.load:
         if not os.path.isfile(args.load):

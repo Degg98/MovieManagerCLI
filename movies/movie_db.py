@@ -91,7 +91,6 @@ class MovieDB:
         return movies
 
     def get_movies_by_genre(self, genre):
-        # genre = self.format_string(genre)
         self.cursor.execute('SELECT * FROM movies WHERE genre = ?', (genre,))
         rows = self.cursor.fetchall()
         movies = []
