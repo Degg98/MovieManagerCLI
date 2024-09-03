@@ -26,3 +26,16 @@ utils/__pycache__/json_file_handler.cpython-310.pyc
 utils/__pycache__/file_handler_factory.cpython-310.pyc
 utils/__pycache__/file_handler.cpython-310.pyc
 utils/__pycache__/json_file_handler.cpython-310.pyc
+__pycache__/cli.cpython-310.pyc
+movies/__pycache__/__init__.cpython-310.pyc
+movies/__pycache__/movie_collection.cpython-310.pyc
+movies/__pycache__/movie_db.cpython-310.pyc
+movies/__pycache__/movie_factory.cpython-310.pyc
+movies/__pycache__/movie_recommendation.cpython-310.pyc
+movies/__pycache__/movie.cpython-310.pyc
+utils/__pycache__/__init__.cpython-310.pyc
+utils/__pycache__/file_handler_base.cpython-310.pyc
+utils/__pycache__/file_handler_factory.cpython-310.pyc
+utils/__pycache__/file_handler.cpython-310.pyc
+utils/__pycache__/json_file_handler.cpython-310.pyc
+utils/__pycache__/xml_file_handler.cpython-310.pyc
