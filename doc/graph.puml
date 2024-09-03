@@ -1,0 +1,102 @@
+@startuml
+
+!define RECTANGLE class
+
+RECTANGLE Movie {
+  - title: str
+  - genre: str
+  - release_year: int
+  - rating: float
+  + __init__(title: str, genre: str, release_year: int, rating: float)
+  + __str__(): str
+}
+
+RECTANGLE AbstractMovieFactory {
+  + create_movie(title: str, genre: str, release_year: int, rating: float): Movie
+}
+
+RECTANGLE ConcreteMovie {
+  - title: str
+  - genre: str
+  - release_year: int
+  - rating: float
+  + __init__(title: str, genre: str, release_year: int, rating: float)
+  + __str__(): str
+}
+
+RECTANGLE MovieFactory {
+  + create_movie(title: str, genre: str, release_year: int, rating: float): Movie
+}
+
+RECTANGLE Reel {
+  - duration: int
+  - title: str
+  - genre: str
+  - release_year: int
+  - rating: float
+  + __init__(title: str, genre: str, release_year: int, rating: float, duration: int)
+  + __str__(): str
+}
+
+RECTANGLE ReelFactory {
+  + create_movie(title: str, genre: str, release_year: int, rating: float, duration: int): Reel
+}
+
+RECTANGLE MovieDB {
+  + add_movie(movie: Movie): None
+  + delete_movie(title: str, release_year: int): None
+  + get_all_movies(): List[Movie]
+  + get_movie_by_title(title: str): Movie
+  + get_movies_by_genre(genre: str): List[Movie]
+  + get_movies_by_rating(rating: float): List[Movie]
+  + calculate_statistics(): dict
+  + close(): None
+}
+
+RECTANGLE MovieCollection {
+  + __init__(db_name: str, factory: AbstractMovieFactory): None
+  + list_movies(): List[Movie]
+  + add_movie(movie: Movie): None
+  + delete_movie(title: str, release_year: int): None
+  + get_movie_by_title(title: str): Movie
+  + get_movies_by_genre(genre: str): List[Movie]
+  + get_movies_by_rating(rating: float): List[Movie]
+  + calculate_statistics(): dict
+  + close(): None
+}
+
+RECTANGLE JsonFileHandler {
+  + load_movies(file_path: str): List[Movie]
+  + save_movies(file_path: str, movies: List[Movie]): None
+}
+
+RECTANGLE XmlFileHandler {
+  + load_movies(file_path: str): List[Movie]
+  + save_movies(file_path: str, movies: List[Movie]): None
+}
+
+Movie <|-- ConcreteMovie
+AbstractMovieFactory <|-- MovieFactory
+AbstractMovieFactory <|-- ReelFactory
+MovieFactory --> Movie
+ReelFactory --> Reel
+MovieDB --> Movie
+MovieDB --> AbstractMovieFactory
+MovieCollection --> MovieDB
+MovieCollection --> AbstractMovieFactory
+JsonFileHandler --> Movie
+JsonFileHandler --> MovieDB
+XmlFileHandler --> Movie
+XmlFileHandler --> MovieDB
+
+note right of AbstractMovieFactory
+  Abstract Factory Method
+  [movies/movie.py](movies/movie.py)
+end note
+
+note right of MovieFactory
+  Factory Method
+  [movies/movie_factory.py](movies/movie_factory.py)
+end note
+
+@enduml

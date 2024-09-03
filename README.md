@@ -227,6 +227,10 @@ Below is an example of a `movies.json` file that can be used with this applicati
 ]
 ```
 
+## Project Design Structure
+
+![Image](doc/MovieManagerCLI.png)
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
