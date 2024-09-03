@@ -3,7 +3,7 @@ import os
 import yaml
 
 from movies.movie_collection import MovieCollection
-from movies.movie_factory import MovieFactory
+from movies.movie_factory import MovieFactory, ReelFactory
 from movies.movie_recommendation import MovieRecommendation
 from utils.file_handler import FileHandler
 
@@ -48,8 +48,9 @@ def cli():
     max_movies = config['file_import']['max_movies']
     default_command = config['cli_settings']['default_command']
 
-    collection = MovieCollection(db_name=db_name)
     factory = MovieFactory()
+    collection = MovieCollection(db_name=db_name, factory=factory)
+
 
     if args.list:
         movies = collection.list_movies()

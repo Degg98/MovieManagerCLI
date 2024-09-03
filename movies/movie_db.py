@@ -1,13 +1,13 @@
 import sqlite3
-from .movie import Movie
-from .movie_factory import MovieFactory
+from .movie import Movie, AbstractMovieFactory
+
 
 class MovieDB:
-    def __init__(self, db_name="movies.db"):
+    def __init__(self, db_name="movies.db", factory= AbstractMovieFactory):
         self.conn = sqlite3.connect(db_name)
         self.cursor = self.conn.cursor()
         self._create_table()
-        self.factory = MovieFactory()
+        self.factory = factory
 
     def _create_table(self):
         self.cursor.execute('''
@@ -91,6 +91,7 @@ class MovieDB:
         return movies
 
     def get_movies_by_genre(self, genre):
+        genre = self.format_string(genre)
         self.cursor.execute('SELECT * FROM movies WHERE genre = ?', (genre,))
         rows = self.cursor.fetchall()
         movies = []

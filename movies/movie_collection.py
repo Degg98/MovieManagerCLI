@@ -1,8 +1,9 @@
 from .movie_db import MovieDB
+from .movie_factory import AbstractMovieFactory
 
 class MovieCollection:
-    def __init__(self, db_name="movies.db"):
-        self.db = MovieDB(db_name)
+    def __init__(self, db_name="movies.db", factory=AbstractMovieFactory):
+        self.db = MovieDB(db_name, factory)
 
     def list_movies(self):
         return self.db.get_all_movies()
